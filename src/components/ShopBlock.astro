@@ -1,5 +1,6 @@
 ---
 import type { ShopBlock } from '../data/types';
+import MapLink from './MapLink.astro';
 interface Props { block: ShopBlock; }
 const { block } = Astro.props;
 ---
@@ -8,6 +9,7 @@ const { block } = Astro.props;
   {block.shops.map((s) => (
     <div class="shop-item">
       <span class="shop-item__name">{s.name}</span>
+      {s.mapQuery && <MapLink query={s.mapQuery} label={s.name} />}
       {s.tag && (
         <span class={`shop-tag ${s.tagColor ? `shop-tag--${s.tagColor}` : ''}`}>{s.tag}</span>
       )}

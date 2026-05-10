@@ -1,5 +1,6 @@
 ---
 import type { MealTable } from '../data/types';
+import MapLink from './MapLink.astro';
 interface Props { table: MealTable; }
 const { table } = Astro.props;
 ---
@@ -18,7 +19,10 @@ const { table } = Astro.props;
     {table.rows.map((r) => (
       <tr>
         <td class="plan">{r.plan}</td>
-        <td>{r.name}</td>
+        <td>
+          {r.name}
+          {r.mapQuery && <MapLink query={r.mapQuery} label={r.name} />}
+        </td>
         <td>{r.feature}</td>
       </tr>
     ))}

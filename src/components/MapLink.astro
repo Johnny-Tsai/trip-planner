@@ -1,0 +1,21 @@
+---
+interface Props {
+  query: string;
+  label?: string;
+}
+const { query, label } = Astro.props;
+const href = `https://maps.google.com/?q=${encodeURIComponent(query)}`;
+---
+<a
+  class="map-link"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`在 Google Maps 查看 ${label ?? query}`}
+  title="在 Google Maps 查看"
+>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </svg>
+</a>

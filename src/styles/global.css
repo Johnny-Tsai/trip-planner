@@ -1077,6 +1077,34 @@ main {
 }
 
 /* ============================================================
+   Map Link (Google Maps icon, inline next to place / shop name)
+   ============================================================ */
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  color: var(--c-text-muted);
+  vertical-align: -5px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: color 0.15s, transform 0.15s, background 0.15s;
+}
+.map-link:hover {
+  color: var(--c-accent);
+  background: var(--c-line-soft);
+  transform: scale(1.1);
+  text-decoration: none;
+}
+.map-link svg { display: block; }
+
+/* shops-block 內 .map-link 與名稱對齊調整 */
+.shop-item .map-link { vertical-align: -4px; margin-left: 2px; }
+.meal-table .map-link { vertical-align: -5px; }
+
+/* ============================================================
    Footer
    ============================================================ */
 .site-footer {
@@ -1101,4 +1129,5 @@ main {
   .day-hero { break-inside: avoid; }
   .timeline-item { break-inside: avoid; }
   a { color: black; }
+  .map-link { display: none; }
 }

@@ -4,6 +4,7 @@ export type TagColor = 'red' | 'green' | 'blue' | 'amber' | 'purple';
 export interface TimelineAlt {
   title: string;
   body: string;
+  mapQuery?: string;
 }
 
 export interface TimelineItem {
@@ -11,6 +12,7 @@ export interface TimelineItem {
   place: string;
   desc: string;
   alt?: TimelineAlt[];
+  mapQuery?: string;
 }
 
 export interface Shop {
@@ -18,6 +20,7 @@ export interface Shop {
   tag?: string;
   tagColor?: TagColor;
   desc: string;
+  mapQuery?: string;
 }
 
 export interface ShopBlock {
@@ -40,6 +43,7 @@ export interface MealRow {
   plan: string;
   name: string;
   feature: string;
+  mapQuery?: string;
 }
 
 export interface MealTable {
