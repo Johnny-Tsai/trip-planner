@@ -202,6 +202,14 @@ const currentYear = new Date().getFullYear();
       window.addEventListener('resize', () => {
         if (!isMobile()) closeMobile();
       });
+
+      // 頁面載入後，把當前 active 的 trip-tab 水平置中於 trip-tabs 滾動列
+      requestAnimationFrame(() => {
+        const activeTab = document.querySelector<HTMLElement>('.trip-tabs a.is-active');
+        if (activeTab) {
+          activeTab.scrollIntoView({ block: 'nearest', inline: 'center' });
+        }
+      });
     </script>
   </body>
 </html>
