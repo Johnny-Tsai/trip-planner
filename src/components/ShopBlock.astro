@@ -9,8 +9,8 @@ const { block } = Astro.props;
   {block.shops.map((s) => (
     <div class="shop-item">
       <span class="shop-item__name">
-        {s.name}
         {s.mapQuery && <MapLink query={s.mapQuery} label={s.name} />}
+        <span>{s.name}</span>
       </span>
       {s.tag && (
         <span class={`shop-tag ${s.tagColor ? `shop-tag--${s.tagColor}` : ''}`}>{s.tag}</span>

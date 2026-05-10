@@ -60,8 +60,8 @@ const coverImageUrl = trip.meta.coverImage
           <li>
             <span class="nights">{h.range}（{h.nights}）</span>
             <span class="name">
-              {h.name}
               {h.mapQuery && <MapLink query={h.mapQuery} label={h.name} />}
+              <span>{h.name}</span>
             </span>
             <span class="area">{h.area}</span>
           </li>

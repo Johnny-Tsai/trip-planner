@@ -21,8 +21,8 @@ const { table } = Astro.props;
         <td class="plan">{r.plan}</td>
         <td>
           <span class="cell-with-map">
-            {r.name}
             {r.mapQuery && <MapLink query={r.mapQuery} label={r.name} />}
+            <span>{r.name}</span>
           </span>
         </td>
         <td>{r.feature}</td>
