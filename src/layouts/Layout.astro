@@ -134,10 +134,6 @@ const currentYear = new Date().getFullYear();
                 class={activeNav === `day-${d.num}` ? 'is-active' : ''}
               >Day {d.num}</a>
             ))}
-            <a
-              href={`${b}/trips/${trip.slug}/checklist`}
-              class={activeNav === 'checklist' ? 'is-active' : ''}
-            >Checklist</a>
           </nav>
         )}
         <main>
