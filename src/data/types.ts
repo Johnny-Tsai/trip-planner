@@ -85,6 +85,7 @@ export interface Hotel {
   nights: string;
   name: string;
   area: string;
+  mapQuery?: string;
 }
 
 export interface OverviewItem {

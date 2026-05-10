@@ -167,14 +167,14 @@ h1, h2, h3, h4 {
   border-color: var(--c-line);
 }
 
-/* main 區左上的浮動展開按鈕（桌機 collapsed 時才顯示） */
+/* main 區左上的浮動展開按鈕（桌機 collapsed 時才顯示，與 trip-tabs 同高） */
 .sidebar-expand {
   position: fixed;
-  top: 14px;
-  left: 14px;
-  z-index: 50;
-  width: 38px;
-  height: 38px;
+  top: 6px;
+  left: 12px;
+  z-index: 60;
+  width: 34px;
+  height: 34px;
   background: var(--c-bg-card);
   border: 1px solid var(--c-line);
   border-radius: 8px;
@@ -192,6 +192,8 @@ h1, h2, h3, h4 {
 }
 @media (min-width: 880px) {
   .layout.is-collapsed .sidebar-expand { display: flex; }
+  /* 有 trip-tabs 時：左側留位給 sidebar-expand，避免重疊 */
+  .layout.is-collapsed .trip-tabs { padding-left: 58px; }
 }
 @media (max-width: 879px) {
   .sidebar-expand { display: none !important; }
@@ -593,7 +595,13 @@ main {
 }
 .hotel-list li:last-child { border: none; }
 .hotel-list .nights { color: var(--c-accent); font-weight: 700; min-width: 130px; }
-.hotel-list .name { font-weight: 600; color: var(--c-text); }
+.hotel-list .name {
+  font-weight: 600;
+  color: var(--c-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
 .hotel-list .area { font-size: 12px; color: var(--c-text-muted); flex-basis: 100%; padding-left: 130px; }
 @media (max-width: 540px) {
   .hotel-list .area { padding-left: 0; }

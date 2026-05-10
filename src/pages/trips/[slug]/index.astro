@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import InfoCard from '../../../components/InfoCard.astro';
+import MapLink from '../../../components/MapLink.astro';
 import { getAllTrips } from '../../../data/trips';
 
 export async function getStaticPaths() {
@@ -40,7 +41,10 @@ const b = base.endsWith('/') ? base.slice(0, -1) : base;
         {trip.hotels.map((h) => (
           <li>
             <span class="nights">{h.range}（{h.nights}）</span>
-            <span class="name">{h.name}</span>
+            <span class="name">
+              {h.name}
+              {h.mapQuery && <MapLink query={h.mapQuery} label={h.name} />}
+            </span>
             <span class="area">{h.area}</span>
           </li>
         ))}
