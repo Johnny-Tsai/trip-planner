@@ -397,6 +397,8 @@ h1, h2, h3, h4 {
   color: var(--trip-color, var(--c-accent));
   border-bottom-color: var(--trip-color, var(--c-accent));
   font-weight: 600;
+  pointer-events: none;
+  cursor: default;
 }
 
 @media (max-width: 879px) {

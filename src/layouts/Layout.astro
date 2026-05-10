@@ -124,15 +124,21 @@ const currentYear = new Date().getFullYear();
             <a
               href={`${b}/trips/${trip.slug}`}
               class={activeNav === 'home' ? 'is-active' : ''}
+              aria-current={activeNav === 'home' ? 'page' : undefined}
+              tabindex={activeNav === 'home' ? -1 : undefined}
             >總覽</a>
             <a
               href={`${b}/trips/${trip.slug}/transit`}
               class={activeNav === 'transit' ? 'is-active' : ''}
+              aria-current={activeNav === 'transit' ? 'page' : undefined}
+              tabindex={activeNav === 'transit' ? -1 : undefined}
             >交通</a>
             {trip.days.map((d) => (
               <a
                 href={`${b}/trips/${trip.slug}/days/${d.num}`}
                 class={activeNav === `day-${d.num}` ? 'is-active' : ''}
+                aria-current={activeNav === `day-${d.num}` ? 'page' : undefined}
+                tabindex={activeNav === `day-${d.num}` ? -1 : undefined}
               >Day {d.num}</a>
             ))}
           </nav>
