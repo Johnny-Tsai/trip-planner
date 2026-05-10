@@ -1,0 +1,64 @@
+---
+import type { RouteStep } from '../data/types';
+interface Props { steps: RouteStep[]; }
+const { steps } = Astro.props;
+---
+<div class="route-flow" aria-label="交通動線">
+  {steps.map((s, i) => (
+    <>
+      {i > 0 && <span class="route-arrow" aria-hidden="true">→</span>}
+      {s.kind === 'walk' && (
+        <span class="route-step route-step--walk">
+          <span class="route-step__icon" aria-hidden="true">🚶</span>
+          <span>步行 {s.minutes} 分{s.meters ? `・約 ${s.meters} m` : ''}{s.note ? `（${s.note}）` : ''}</span>
+        </span>
+      )}
+      {s.kind === 'train' && (
+        <span
+          class="route-step route-step--train"
+          style={s.lineColor ? `--line-color: ${s.lineColor}` : ''}
+        >
+          <span class="route-step__icon" aria-hidden="true">🚆</span>
+          <span class="route-step__line">{s.line}</span>
+          <span class="route-step__route">
+            {s.from} <span class="route-step__sep">→</span> {s.to}
+            {s.stops !== undefined && <span class="route-step__meta">（{s.stops} 站{s.minutes ? `・${s.minutes} 分` : ''}{s.cost ? `・${s.cost}` : ''}）</span>}
+            {s.stops === undefined && (s.minutes || s.cost) && (
+              <span class="route-step__meta">（{s.minutes ? `${s.minutes} 分` : ''}{s.minutes && s.cost ? '・' : ''}{s.cost ?? ''}）</span>
+            )}
+          </span>
+        </span>
+      )}
+      {s.kind === 'bus' && (
+        <span class="route-step route-step--bus">
+          <span class="route-step__icon" aria-hidden="true">🚌</span>
+          {s.line && <span class="route-step__line route-step__line--bus">{s.line}</span>}
+          <span class="route-step__route">
+            {s.from && s.to && <>{s.from} <span class="route-step__sep">→</span> {s.to}</>}
+            {s.note && !s.from && <>{s.note}</>}
+            {(s.minutes || s.cost) && <span class="route-step__meta">（{s.minutes ? `${s.minutes} 分` : ''}{s.minutes && s.cost ? '・' : ''}{s.cost ?? ''}）</span>}
+          </span>
+        </span>
+      )}
+      {s.kind === 'taxi' && (
+        <span class="route-step route-step--taxi">
+          <span class="route-step__icon" aria-hidden="true">🚕</span>
+          <span class="route-step__route">
+            {s.from && s.to ? <>{s.from} <span class="route-step__sep">→</span> {s.to}</> : <>計程車{s.note ? `・${s.note}` : ''}</>}
+            {(s.minutes || s.cost) && <span class="route-step__meta">（{s.minutes ? `${s.minutes} 分` : ''}{s.minutes && s.cost ? '・' : ''}{s.cost ?? ''}）</span>}
+          </span>
+        </span>
+      )}
+      {s.kind === 'flight' && (
+        <span class="route-step route-step--flight">
+          <span class="route-step__icon" aria-hidden="true">✈️</span>
+          <span class="route-step__route">
+            {s.from} <span class="route-step__sep">→</span> {s.to}
+            {s.minutes && <span class="route-step__meta">（{Math.floor(s.minutes/60)} 小時{s.minutes%60 > 0 ? ` ${s.minutes%60} 分` : ''}）</span>}
+            {s.note && <span class="route-step__meta">（{s.note}）</span>}
+          </span>
+        </span>
+      )}
+    </>
+  ))}
+</div>

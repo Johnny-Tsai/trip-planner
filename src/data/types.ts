@@ -7,6 +7,13 @@ export interface TimelineAlt {
   mapQuery?: string;
 }
 
+export type RouteStep =
+  | { kind: 'walk'; minutes: number; meters?: number; note?: string }
+  | { kind: 'train'; line: string; lineColor?: string; from: string; to: string; stops?: number; via?: string[]; cost?: string; minutes?: number }
+  | { kind: 'bus'; line?: string; from?: string; to?: string; minutes?: number; cost?: string; note?: string }
+  | { kind: 'taxi'; from?: string; to?: string; minutes?: number; cost?: string; note?: string }
+  | { kind: 'flight'; from: string; to: string; minutes?: number; note?: string };
+
 export interface TimelineItem {
   time: string;
   place: string;
@@ -15,6 +22,7 @@ export interface TimelineItem {
   mapQuery?: string;
   shops?: ShopBlock[];
   table?: MealTable;
+  route?: RouteStep[];
 }
 
 export interface Shop {

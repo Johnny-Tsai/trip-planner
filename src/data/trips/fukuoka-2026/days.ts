@@ -18,6 +18,9 @@ export const days: Day[] = [
         place: '高雄國際機場 → 福岡國際機場',
         desc: '飛行時間約 2.5 小時。建議提前 2 小時抵達高雄機場辦理 Check-in，托運行李前再次確認鋰電池與行動電源規定。',
         mapQuery: '福岡空港 国際線ターミナル',
+        route: [
+          { kind: 'flight', from: '高雄 KHH', to: '福岡 FUK', minutes: 150 },
+        ],
       },
       {
         time: '19:20 ─ 20:00',
@@ -28,8 +31,12 @@ export const days: Day[] = [
       {
         time: '20:00 ─ 20:25',
         place: '搭計程車 → 唐人町2丁目6-21',
-        desc: '福岡空港國際線 1F 計程車乘車處（タクシー乗り場）排隊上車。出示住址「福岡市中央区唐人町2-6-21」（建議用 Google Maps 顯示日文住址給司機）。距離約 9 公里、車程 20-25 分鐘、車費約 ¥2,500-3,000（22:00 後夜間加成 20%）。4 人 + 大件行李建議叫 ジャンボタクシー（大型計程車）¥3,500-4,500。',
+        desc: '福岡空港國際線 1F 計程車乘車處（タクシー乗り場）排隊上車。出示住址「福岡市中央区唐人町2-6-21」（建議用 Google Maps 顯示日文住址給司機）。4 人 + 大件行李建議叫 ジャンボタクシー（大型計程車）¥3,500-4,500。22:00 後夜間加成 20%。',
         mapQuery: '福岡市中央区唐人町2-6-21',
+        route: [
+          { kind: 'walk', minutes: 5, note: '至 1F 計程車乘車處' },
+          { kind: 'taxi', from: '福岡空港 國際線', to: '唐人町 2-6-21', minutes: 22, cost: '¥2,500-3,000' },
+        ],
       },
       {
         time: '20:30 ─ 21:30',
@@ -76,36 +83,58 @@ export const days: Day[] = [
         place: '大濠公園（Ohori Park）',
         desc: '福岡市民最愛的綠肺，仿照杭州西湖造景。湖中三座小島以橋相連，外圍 2 公里步道適合慢跑。可在「ボートハウス」租天鵝船 30 分 ¥1,100，或到 Starbucks 大濠公園店欣賞湖景。',
         mapQuery: '大濠公園',
+        route: [
+          { kind: 'walk', minutes: 5, meters: 350, note: '出唐人町飯店至唐人町站' },
+          { kind: 'train', line: '空港線', lineColor: '#f0833a', from: '唐人町', to: '大濠公園', stops: 1, minutes: 2, cost: '¥210' },
+          { kind: 'walk', minutes: 3, meters: 200, note: '至湖畔' },
+        ],
       },
       {
         time: '12:35 ─ 14:00',
         place: '博多水炊鍋専門 橙',
         desc: '大濠公園附近隱藏名店。午間套餐 ¥2,000–¥3,000 可吃到濃白雞湯、雞絲沙拉、蔥串雞肉與雜炊。湯頭以九州地雞燉煮 8 小時，乳白濃郁。',
         mapQuery: '博多水炊き専門 橙 大濠',
+        route: [
+          { kind: 'walk', minutes: 5, meters: 400 },
+        ],
       },
       {
         time: '14:14 ─ 15:14',
         place: '舞鶴公園（福岡城跡）',
         desc: '與大濠公園相連的歷史公園，建於 1607 年的福岡城雖只剩石垣，但天守台景致絕佳。5 月晚櫻已謝，但翠綠林蔭道仍適合漫步，登天守台可俯瞰大濠公園全景。',
         mapQuery: '福岡市中央区城内1-4',
+        route: [
+          { kind: 'walk', minutes: 8, meters: 600, note: '從橙穿越大濠公園東側' },
+        ],
       },
       {
         time: '15:27 ─ 16:30',
         place: 'Full Full（フルフル）',
         desc: '福岡無人不曉的「明太子法國麵包」始祖店。法棍中夾入大量明太子奶油，烤得酥脆入味。一條 ¥600 起，可外帶亦可現場切片試吃。',
         mapQuery: 'フルフル 天神本店',
+        route: [
+          { kind: 'walk', minutes: 7, meters: 550, note: '至大濠公園站' },
+          { kind: 'train', line: '空港線', lineColor: '#f0833a', from: '大濠公園', to: '天神', stops: 2, minutes: 4, cost: '¥210' },
+          { kind: 'walk', minutes: 4, meters: 300, note: '至 Full Full 天神本店' },
+        ],
       },
       {
         time: '16:30 ─ 19:30',
         place: 'Mina 天神',
         desc: '天神核心地段的時尚購物中心，集合 GU、ZARA、無印良品、UNIQLO 等品牌。建議先到 B2F 食品超市試吃，再逐層往上逛服飾與雜貨。',
         mapQuery: 'ミーナ天神',
+        route: [
+          { kind: 'walk', minutes: 3, meters: 250 },
+        ],
       },
       {
         time: '19:30 ─ 23:30',
         place: '天神地下街 美食巡禮',
         desc: '仿 19 世紀歐洲風格地下街，連結天神南站與天神站，全長約 590 公尺，分 12 個區塊。下方為必吃商店清單。',
         mapQuery: '天神地下街',
+        route: [
+          { kind: 'walk', minutes: 2, meters: 150, note: '從 Mina 天神 B2F 直接連通地下街' },
+        ],
         shops: [
           {
             title: '天神地下街 必吃商店',

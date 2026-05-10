@@ -3,6 +3,7 @@ import type { TimelineItem } from '../data/types';
 import MapLink from './MapLink.astro';
 import ShopBlock from './ShopBlock.astro';
 import MealTable from './MealTable.astro';
+import RouteFlow from './RouteFlow.astro';
 interface Props { items: TimelineItem[]; }
 const { items } = Astro.props;
 ---
@@ -15,6 +16,7 @@ const { items } = Astro.props;
         <span>{item.place}</span>
       </div>
       <div class="timeline-item__desc">{item.desc}</div>
+      {item.route && <RouteFlow steps={item.route} />}
       {item.alt?.map((a) => (
         <div class="timeline-alt">
           <strong>

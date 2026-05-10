@@ -1032,6 +1032,84 @@ main {
 }
 .timeline-item .shops-block,
 .timeline-item .meal-table { margin: 14px 0 4px; }
+
+/* ============================================================
+   Route Flow — 動線流程（步行 / 電車 / 巴士 / 計程車 chip）
+   ============================================================ */
+.route-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 4px;
+  padding: 10px 12px;
+  background: var(--c-bg-soft);
+  border: 1px dashed var(--c-line);
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.route-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-line);
+  color: var(--c-text);
+}
+.route-step__icon { font-size: 14px; line-height: 1; }
+.route-step__line {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--line-color, var(--c-text-muted));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.route-step__line--bus {
+  background: var(--c-blue);
+}
+.route-step__route { font-weight: 500; }
+.route-step__sep { color: var(--c-text-muted); margin: 0 4px; }
+.route-step__meta {
+  color: var(--c-text-muted);
+  font-size: 11.5px;
+  font-weight: 400;
+  margin-left: 4px;
+}
+.route-step--walk {
+  background: transparent;
+  border-style: dashed;
+  color: var(--c-text-soft);
+}
+.route-step--taxi {
+  background: #fff7e0;
+  border-color: #f0c97a;
+}
+.route-step--bus {
+  background: #eef4fa;
+  border-color: #b8cce0;
+}
+.route-step--flight {
+  background: #e8f4f8;
+  border-color: #88c4d8;
+}
+.route-arrow {
+  color: var(--c-text-muted);
+  font-weight: 700;
+  margin: 0 2px;
+  font-size: 14px;
+}
+
+@media (max-width: 540px) {
+  .route-flow { font-size: 12px; padding: 8px 10px; }
+  .route-step { padding: 3px 8px; }
+}
 .shops-block__title {
   font-size: 16px;
   color: var(--c-accent);
