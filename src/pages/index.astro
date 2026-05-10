@@ -7,9 +7,9 @@ const b = base.endsWith('/') ? base.slice(0, -1) : base;
 const trips = getAllTrips();
 ---
 
-<Layout title="我的旅程 · Trip Planner" activeNav="trips-list">
+<Layout title="我的旅程 · Trip Planner">
 
-  <section class="cover">
+  <section class="cover cover--platform">
     <span class="cover__badge">MY TRIPS</span>
     <h1 class="cover__title">我的旅程</h1>
     <div class="cover__subtitle">私人旅遊行程規劃</div>
@@ -18,20 +18,23 @@ const trips = getAllTrips();
 
   <section class="section">
     <h2 class="section-title">所有行程<small>ALL TRIPS · {trips.length}</small></h2>
-    <div class="day-summary-grid">
+    <div class="trip-card-grid">
       {trips.map((trip) => (
-        <a class="day-summary" href={`${b}/trips/${trip.slug}`}>
-          <div class="day-summary__num">
-            {trip.meta.badge && <span style="font-size:11px; letter-spacing:0.08em; color:var(--c-text-soft);">{trip.meta.badge}</span>}
-            <strong style="font-size:32px;">{trip.meta.totalDays}</strong>
-            <em>天 {trip.meta.totalNights} 夜</em>
+        <a
+          class="trip-card"
+          href={`${b}/trips/${trip.slug}`}
+          style={`--trip-color: ${trip.meta.themeColor ?? '#c44834'}`}
+        >
+          <div class="trip-card__cover" data-icons={trip.meta.coverIcons ?? ''}>
+            {trip.meta.badge && <span class="trip-card__badge">{trip.meta.badge}</span>}
           </div>
-          <div class="day-summary__body">
-            <strong>{trip.meta.title}</strong>
-            <span style="display:block; color:var(--c-text-soft); font-size:13px; margin-bottom:6px;">
-              {trip.meta.subtitle} · {trip.meta.dateRange}
-            </span>
-            {trip.meta.tagline ?? trip.meta.description}
+          <div class="trip-card__body">
+            <h3 class="trip-card__title">{trip.meta.title}</h3>
+            <p class="trip-card__sub">{trip.meta.subtitle} · {trip.meta.dateRange}</p>
+            {trip.meta.tagline && <p class="trip-card__tagline">{trip.meta.tagline}</p>}
+            <div class="trip-card__meta">
+              <span class="trip-card__days">{trip.meta.totalDays} 天 {trip.meta.totalNights} 夜</span>
+            </div>
           </div>
         </a>
       ))}

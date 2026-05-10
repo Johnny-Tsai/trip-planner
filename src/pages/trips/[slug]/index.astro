@@ -17,7 +17,7 @@ const b = base.endsWith('/') ? base.slice(0, -1) : base;
 
 <Layout title={trip.meta.title} activeNav="home" trip={trip}>
 
-  <section class="cover">
+  <section class="cover cover--trip">
     {trip.meta.badge && <span class="cover__badge">{trip.meta.badge}</span>}
     <h1 class="cover__title">{trip.meta.title}</h1>
     <div class="cover__subtitle">{trip.meta.subtitle}</div>

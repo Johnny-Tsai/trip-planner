@@ -1,67 +1,69 @@
 import type { IllustEntry } from '../../types';
 
-// Wikimedia Commons CC-BY-SA 圖片來源 helper
-const wm = (filename: string, width = 1200) =>
-  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=${width}`;
+// 本地手繪 / 水彩風 PNG（放於 public/illustrations/fukuoka-2026/）
+// 未生圖前 Illust.astro 會 onerror 隱藏 img，露出 CSS 漸層 fallback (.illust--xxx)
+const base = import.meta.env.BASE_URL;
+const b = base.endsWith('/') ? base : `${base}/`;
+const local = (filename: string) => `${b}illustrations/fukuoka-2026/${filename}`;
 
 export const illustrations: Record<string, IllustEntry> = {
   airport: {
-    img: wm('Fukuoka Airport International Terminal by night; April 2016.jpg'),
+    img: local('airport.png'),
     label: '福岡國際機場',
     icon: '✈',
   },
   park: {
-    img: wm('Sunset in Ohori Park.JPG'),
+    img: local('park.png'),
     label: '大濠公園夕陽',
     icon: '❀',
   },
   castle: {
-    img: wm('View near east moat of Fukuoka Castle.jpg'),
+    img: local('castle.png'),
     label: '福岡城跡',
     icon: '❖',
   },
   river: {
-    img: wm('Yanagawa Cruise.jpg'),
+    img: local('river.png'),
     label: '柳川扁舟川下り',
     icon: '◆',
   },
   shrine: {
-    img: wm('Dazaifu Tenmangu08n3200.jpg'),
+    img: local('shrine.png'),
     label: '太宰府天滿宮',
     icon: '❖',
   },
   'shrine-hakata': {
-    img: wm('Kushida Jinja Hakata Okunchi.JPG'),
+    img: local('shrine-hakata.png'),
     label: '櫛田神社',
     icon: '✦',
   },
   tower: {
-    img: wm('Fukuoka Tower 20180413.jpg'),
+    img: local('tower.png'),
     label: '福岡塔',
     icon: '▲',
   },
   yufuin: {
-    img: wm('View of Mount Yufudake and Yufuin Onsen Street in front of Yufuin Station.JPG'),
+    img: local('yufuin.png'),
     label: '由布院・由布岳',
     icon: '▲',
   },
   safari: {
-    img: wm('Africanlionsafari Bus.JPG'),
+    img: local('safari.png'),
     label: '九州自然動物園',
     icon: '◆',
   },
   hells: {
-    img: wm('Umi Jigoku (Sea Hell) in Beppu.jpg'),
+    img: local('hells.png'),
     label: '別府海地獄',
     icon: '♨',
   },
   canalcity: {
-    img: wm('Canal city hakata fukuoka3.jpg'),
+    img: local('canalcity.png'),
     label: '博多運河城',
     icon: '★',
   },
   shopping: {
-    img: wm('Hakata Station Business Center Building.JPG'),
+    img: local('shopping.png'),
     label: '博多站',
     icon: '★',
   },

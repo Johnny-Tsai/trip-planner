@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { Trip } from '../data/types';
+import { getAllTrips } from '../data/trips';
 
 interface Props {
   title: string;
@@ -17,30 +18,11 @@ const { title, description, activeNav, trip } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const b = base.endsWith('/') ? base.slice(0, -1) : base;
 
+const allTrips = getAllTrips();
+
 const themeColor = trip?.meta.themeColor ?? PLATFORM_THEME;
 const metaDesc = description ?? trip?.meta.description ?? PLATFORM_DESC;
-
-const brandHref = trip ? `${b}/trips/${trip.slug}` : `${b}/`;
-const brandTitle = trip?.meta.title ?? PLATFORM_NAME;
-const brandSub = trip?.meta.subtitle ?? '';
-
-// 有 trip：顯示該趟內部導覽；沒 trip（trips 清單頁）：只顯示「回首頁」
-const nav = trip
-  ? [
-      { id: 'home', label: '總覽', href: `${b}/trips/${trip.slug}` },
-      { id: 'transit', label: '交通指南', href: `${b}/trips/${trip.slug}/transit` },
-      ...trip.days.map((d) => ({
-        id: `day-${d.num}`,
-        label: `Day ${d.num}`,
-        href: `${b}/trips/${trip.slug}/days/${d.num}`,
-      })),
-      { id: 'checklist', label: 'Checklist', href: `${b}/trips/${trip.slug}/checklist` },
-    ]
-  : [{ id: 'trips-list', label: '所有旅程', href: `${b}/` }];
-
-const footerLine = trip
-  ? `© ${trip.meta.dates.start.split('/')[0]} ${trip.meta.title} · Built with Astro · Hosted on GitHub Pages`
-  : `© ${new Date().getFullYear()} ${PLATFORM_NAME} · Built with Astro · Hosted on GitHub Pages`;
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -63,28 +45,163 @@ const footerLine = trip
     )}
   </head>
   <body>
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a class="site-header__brand" href={brandHref}>
-          {brandTitle} {brandSub && <small>{brandSub}</small>}
-        </a>
-        <nav class="site-header__nav" aria-label="主要導覽">
-          {nav.map((item) => (
-            <a href={item.href} class={activeNav === item.id ? 'is-active' : ''}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </div>
+    <header class="mobile-header">
+      <button
+        type="button"
+        class="hamburger"
+        aria-label="開啟導覽"
+        data-action="open-sidebar"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <a class="mobile-header__brand" href={b || '/'}>{PLATFORM_NAME}</a>
     </header>
 
-    <main>
-      <slot />
-    </main>
+    <div class="layout">
+      <button
+        type="button"
+        class="sidebar-expand"
+        aria-label="展開側邊導覽"
+        data-action="expand-sidebar"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
 
-    <footer class="site-footer">
-      <p>{footerLine}</p>
-      <p>內容僅供參考，店家資訊與票價請以實際為準</p>
-    </footer>
+      <aside class="sidebar" aria-label="主要導覽">
+        <button
+          type="button"
+          class="sidebar__toggle"
+          aria-label="收合或關閉導覽"
+          data-action="toggle-sidebar"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="14 6 8 12 14 18"/>
+          </svg>
+        </button>
+
+        <a class="sidebar__brand" href={b || '/'}>
+          {PLATFORM_NAME}
+          <small>{PLATFORM_DESC}</small>
+        </a>
+
+        <nav class="sidebar__nav">
+          <div class="sidebar__section">
+            <h4 class="sidebar__heading">所有旅程</h4>
+            {allTrips.map((t) => (
+              <a
+                href={`${b}/trips/${t.slug}`}
+                class={trip?.slug === t.slug ? 'is-active' : ''}
+                style={`--trip-color: ${t.meta.themeColor ?? PLATFORM_THEME}`}
+              >
+                <span class="sidebar__dot"></span>
+                {t.meta.title}
+              </a>
+            ))}
+          </div>
+
+        </nav>
+
+        <footer class="sidebar__footer">
+          <p>© {currentYear} {PLATFORM_NAME}</p>
+          <p>Built with Astro · Hosted on GitHub Pages</p>
+        </footer>
+      </aside>
+
+      <div class="nav-backdrop" aria-hidden="true"></div>
+
+      <div class="layout__main">
+        {trip && (
+          <nav
+            class="trip-tabs"
+            aria-label="行程子頁切換"
+            style={`--trip-color: ${trip.meta.themeColor ?? PLATFORM_THEME}`}
+          >
+            <a
+              href={`${b}/trips/${trip.slug}`}
+              class={activeNav === 'home' ? 'is-active' : ''}
+            >總覽</a>
+            <a
+              href={`${b}/trips/${trip.slug}/transit`}
+              class={activeNav === 'transit' ? 'is-active' : ''}
+            >交通</a>
+            {trip.days.map((d) => (
+              <a
+                href={`${b}/trips/${trip.slug}/days/${d.num}`}
+                class={activeNav === `day-${d.num}` ? 'is-active' : ''}
+              >Day {d.num}</a>
+            ))}
+            <a
+              href={`${b}/trips/${trip.slug}/checklist`}
+              class={activeNav === 'checklist' ? 'is-active' : ''}
+            >Checklist</a>
+          </nav>
+        )}
+        <main>
+          <slot />
+        </main>
+        <footer class="site-footer">
+          <p>內容僅供參考，店家資訊與票價請以實際為準</p>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      const sidebar = document.querySelector<HTMLElement>('.sidebar');
+      const layout = document.querySelector<HTMLElement>('.layout');
+      const backdrop = document.querySelector<HTMLElement>('.nav-backdrop');
+      const isMobile = () => window.matchMedia('(max-width: 879px)').matches;
+
+      const openMobile = () => {
+        sidebar?.classList.add('is-open');
+        backdrop?.classList.add('is-active');
+      };
+      const closeMobile = () => {
+        sidebar?.classList.remove('is-open');
+        backdrop?.classList.remove('is-active');
+      };
+      const toggleDesktop = () => {
+        layout?.classList.toggle('is-collapsed');
+      };
+
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+
+        if (target.closest('[data-action="open-sidebar"]')) {
+          openMobile();
+          return;
+        }
+        if (target.closest('[data-action="toggle-sidebar"]')) {
+          if (isMobile()) closeMobile();
+          else toggleDesktop();
+          return;
+        }
+        if (target.closest('[data-action="expand-sidebar"]')) {
+          layout?.classList.remove('is-collapsed');
+          return;
+        }
+        // 手機：點 backdrop 或 sidebar 內連結 → 自動關閉
+        if (isMobile()) {
+          if (target.closest('.nav-backdrop') || target.closest('.sidebar a')) {
+            closeMobile();
+          }
+        }
+      });
+
+      // ESC 鍵關閉手機抽屜
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMobile() && sidebar?.classList.contains('is-open')) {
+          closeMobile();
+        }
+      });
+
+      // 視窗從手機 resize 回桌機時，清除手機 open 狀態（避免狀態錯亂）
+      window.addEventListener('resize', () => {
+        if (!isMobile()) closeMobile();
+      });
+    </script>
   </body>
 </html>
