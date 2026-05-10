@@ -8,8 +8,10 @@ const { block } = Astro.props;
   <h3 class="shops-block__title">{block.title}</h3>
   {block.shops.map((s) => (
     <div class="shop-item">
-      <span class="shop-item__name">{s.name}</span>
-      {s.mapQuery && <MapLink query={s.mapQuery} label={s.name} />}
+      <span class="shop-item__name">
+        {s.name}
+        {s.mapQuery && <MapLink query={s.mapQuery} label={s.name} />}
+      </span>
       {s.tag && (
         <span class={`shop-tag ${s.tagColor ? `shop-tag--${s.tagColor}` : ''}`}>{s.tag}</span>
       )}

@@ -1085,12 +1085,14 @@ main {
   justify-content: center;
   width: 22px;
   height: 22px;
-  margin-left: 6px;
+  margin-left: 4px;
   color: var(--c-text-muted);
-  vertical-align: -5px;
+  vertical-align: middle;
   text-decoration: none;
   border-radius: 4px;
   transition: color 0.15s, transform 0.15s, background 0.15s;
+  flex-shrink: 0;
+  line-height: 1;
 }
 .map-link:hover {
   color: var(--c-accent);
@@ -1100,9 +1102,31 @@ main {
 }
 .map-link svg { display: block; }
 
-/* shops-block 內 .map-link 與名稱對齊調整 */
-.shop-item .map-link { vertical-align: -4px; margin-left: 2px; }
-.meal-table .map-link { vertical-align: -5px; }
+/* 容器改 flex 對齊：text + map-link 自然垂直置中 */
+.timeline-item__place {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.timeline-alt strong {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.shop-item__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  vertical-align: middle;
+}
+.cell-with-map {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
 
 /* ============================================================
    Footer

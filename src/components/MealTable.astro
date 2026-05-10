@@ -20,8 +20,10 @@ const { table } = Astro.props;
       <tr>
         <td class="plan">{r.plan}</td>
         <td>
-          {r.name}
-          {r.mapQuery && <MapLink query={r.mapQuery} label={r.name} />}
+          <span class="cell-with-map">
+            {r.name}
+            {r.mapQuery && <MapLink query={r.mapQuery} label={r.name} />}
+          </span>
         </td>
         <td>{r.feature}</td>
       </tr>
