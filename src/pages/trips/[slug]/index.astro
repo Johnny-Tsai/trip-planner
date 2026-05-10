@@ -14,17 +14,32 @@ export async function getStaticPaths() {
 const { trip } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const b = base.endsWith('/') ? base.slice(0, -1) : base;
+const bSlash = base.endsWith('/') ? base : `${base}/`;
+const coverImageUrl = trip.meta.coverImage
+  ? `${bSlash}illustrations/${trip.slug}/${trip.meta.coverImage}`
+  : null;
 ---
 
 <Layout title={trip.meta.title} activeNav="home" trip={trip}>
 
-  <section class="cover cover--trip">
-    {trip.meta.badge && <span class="cover__badge">{trip.meta.badge}</span>}
-    <h1 class="cover__title">{trip.meta.title}</h1>
-    <div class="cover__subtitle">{trip.meta.subtitle}</div>
-    <div class="cover__dates">{trip.meta.dateRange}</div>
-    {trip.meta.coverIcons && <div class="cover__icons">{trip.meta.coverIcons}</div>}
-    {trip.meta.tagline && <div class="cover__tagline">{trip.meta.tagline}</div>}
+  <section class={`cover cover--trip ${coverImageUrl ? 'cover--has-photo' : ''}`}>
+    {coverImageUrl && (
+      <img
+        class="cover__photo"
+        src={coverImageUrl}
+        alt={`${trip.meta.title} 封面`}
+        loading="eager"
+        decoding="async"
+      />
+    )}
+    <div class="cover__inner">
+      {trip.meta.badge && <span class="cover__badge">{trip.meta.badge}</span>}
+      <h1 class="cover__title">{trip.meta.title}</h1>
+      <div class="cover__subtitle">{trip.meta.subtitle}</div>
+      <div class="cover__dates">{trip.meta.dateRange}</div>
+      {trip.meta.coverIcons && <div class="cover__icons">{trip.meta.coverIcons}</div>}
+      {trip.meta.tagline && <div class="cover__tagline">{trip.meta.tagline}</div>}
+    </div>
   </section>
 
   <section class="section" id="overview">

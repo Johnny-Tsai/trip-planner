@@ -109,6 +109,7 @@ export interface TripMeta {
   coverIcons?: string;       // 首頁卡片 / cover 區裝飾 icon row
   tagline?: string;          // cover 區的 tagline 文案
   badge?: string;            // cover 區左上角 badge（如 "FUKUOKA · KYUSHU"）
+  coverImage?: string;       // trip 頁 cover hero 背景照（檔名，置於 public/illustrations/{slug}/）
 }
 
 export interface IllustEntry {

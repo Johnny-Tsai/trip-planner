@@ -12,4 +12,5 @@ export const meta: TripMeta = {
   coverIcons: '❖ ♨ ◆ ► ◆',
   tagline: '天神地下街 · 由布院湯之坪 · 別府地獄 · 太宰府表參道',
   badge: 'FUKUOKA · KYUSHU',
+  coverImage: 'cover.webp',
 };
