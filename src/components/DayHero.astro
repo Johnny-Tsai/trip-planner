@@ -8,5 +8,5 @@ const { day } = Astro.props;
   <h1 class="day-hero__title">{day.title}</h1>
   <div class="day-hero__date">{day.date}（{day.weekday}）　{day.subtitle}</div>
   <p class="day-hero__summary">{day.summary}</p>
-  <div class="day-hero__icons">{day.iconRow}</div>
+  {day.iconRow && <div class="day-hero__icons">{day.iconRow}</div>}
 </section>

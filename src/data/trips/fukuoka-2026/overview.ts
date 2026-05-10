@@ -2,7 +2,7 @@ import type { OverviewItem, InfoCard } from '../../types';
 
 export const info: InfoCard[] = [
   {
-    title: '✈ 旅程資訊',
+    title: '旅程資訊',
     paragraphs: [
       '出發：2026/05/28（四）12:30 高雄國際機場',
       '抵達：2026/05/28（四）19:20 福岡國際機場',
@@ -12,7 +12,7 @@ export const info: InfoCard[] = [
     ],
   },
   {
-    title: '◆ 交通策略',
+    title: '交通策略',
     paragraphs: [
       '5/28～6/1：福岡市區大眾運輸（地下鐵+西鐵）',
       '6/1：JR特急由布院之森（博多→由布院）',

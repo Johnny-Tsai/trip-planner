@@ -2,7 +2,7 @@ import type { TransitCard, InfoCard } from '../../types';
 
 export const master: TransitCard[] = [
   {
-    title: '◆ 機場 → 唐人町（5/28）',
+    title: '機場 → 唐人町（5/28）',
     variant: 'blue',
     steps: [
       { text: '福岡空港站 → 唐人町站' },
@@ -11,7 +11,7 @@ export const master: TransitCard[] = [
     ],
   },
   {
-    title: '◆ 福岡市區常用路線',
+    title: '福岡市區常用路線',
     variant: 'green',
     steps: [
       { text: '空港線（橘）：福岡空港 ⇄ 博多 ⇄ 中洲川端 ⇄ 天神 ⇄ 大濠公園 ⇄ 唐人町 ⇄ 西新' },
@@ -21,7 +21,7 @@ export const master: TransitCard[] = [
     ],
   },
   {
-    title: '► 跨城特急（5/30、6/1、6/3）',
+    title: '跨城特急（5/30、6/1、6/3）',
     variant: 'purple',
     steps: [
       { text: '5/30 太宰府/柳川：西鐵福岡(天神)站 → 西鐵二日市 → 太宰府站；西鐵福岡 → 西鐵柳川。' },
@@ -31,7 +31,7 @@ export const master: TransitCard[] = [
     ],
   },
   {
-    title: '◆ 別府地獄巡禮替代方案（如未自駕）',
+    title: '別府地獄巡禮替代方案（如未自駕）',
     variant: 'amber',
     steps: [
       { text: '龜之井巴士「地獄めぐり共通觀覽券」¥2,200，可搭乘 5/9/41 號定期觀光路線。' },
@@ -42,7 +42,7 @@ export const master: TransitCard[] = [
 ];
 
 export const tickets: InfoCard = {
-  title: '★ 必備票券',
+  title: '必備票券',
   paragraphs: [
     'SUGOCA / nimoca / Suica：IC卡，福岡地下鐵、JR、巴士、便利商店通用，建議抵達後在福岡空港站綠色窗口或售票機購買（押金¥500）。',
     '福岡市地下鐵一日券（¥640）：當日無限次搭乘，超過3趟即划算，5/29、5/31、6/4 均可考慮。',

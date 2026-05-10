@@ -10,7 +10,7 @@ export const days: Day[] = [
     title: '抵達福岡，安頓唐人町',
     subtitle: '高雄 → 福岡',
     summary: '傍晚抵達福岡空港，搭地鐵直達唐人町飯店放下行李，到附近超市或便利商店採買晚餐與隔日早餐，享受日本第一晚的便利日常。',
-    iconRow: '✈ ◆ ◆ ★',
+    iconRow: '',
     hero: [{ type: 'airport', label: '福岡國際機場 · Fukuoka Airport' }],
     timeline: [
       {
@@ -43,7 +43,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '◆ 機場 → 唐人町 詳細指引',
+        title: '機場 → 唐人町 詳細指引',
         variant: 'blue',
         steps: [
           { text: 'Step 1　福岡空港國際線出境 → 走過天橋至 1 樓 4 號站搭乘免費「國內線連絡巴士」，每 5–8 分鐘一班。' },
@@ -65,7 +65,7 @@ export const days: Day[] = [
     title: '大濠 · 舞鶴 · 天神地下街',
     subtitle: '福岡市區散策',
     summary: '早晨在大濠公園湖畔慢跑或租小船，午餐品嘗博多名物水炊鍋，下午穿越福岡城跡，晚上一頭栽進天神地下街的美食迷宮。',
-    iconRow: '❀ ◆ ❖ ★ ◆',
+    iconRow: '',
     hero: [
       { type: 'park', label: '大濠公園' },
       { type: 'castle', label: '舞鶴公園 · 福岡城跡' },
@@ -110,7 +110,7 @@ export const days: Day[] = [
     ],
     shops: [
       {
-        title: '★ 天神地下街 必吃商店',
+        title: '天神地下街 必吃商店',
         shops: [
           { name: '大砲拉麵 天神店', tag: '拉麵', tagColor: 'red', desc: '1953 年於久留米創業的豚骨拉麵老店，招牌「昔ラーメン」用昭和懷舊濃白湯頭加自家「カリカリ」（炸豬背脂粒），香氣濃郁、油花鮮明卻不膩口。福岡市區僅天神地下街設店。¥850 起。', mapQuery: '大砲ラーメン 天神店' },
           { name: 'Truffle BAKERY 天神地下街店', tag: '麵包', tagColor: 'red', desc: '東京發跡的黑松露專門麵包店，「白松露鹽麵包」（¥390）外酥內軟，奶油裡藏白松露片，福岡僅此一家分店，下午 5 點後常售完。', mapQuery: 'Truffle BAKERY 天神地下街' },
@@ -122,7 +122,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '◆ 今日交通動線',
+        title: '今日交通動線',
         variant: 'blue',
         steps: [
           { text: '唐人町 → 大濠公園：地下鐵空港線 1 站 ¥210（也可步行 15 分）。' },
@@ -143,7 +143,7 @@ export const days: Day[] = [
     title: '柳川扁舟・太宰府表參道',
     subtitle: '學問之神與水鄉',
     summary: '乘坐扁舟漂流柳川水道，午餐五擇一品嘗百年蒸籠鰻魚飯。下午前往日本三大天滿宮之一——太宰府，拜學問之神並走訪表參道百年和菓子。晚上返福岡享受中洲屋台夜未眠。',
-    iconRow: '◆ ◆ ◆ ❖ ◆ ✦',
+    iconRow: '',
     hero: [
       { type: 'river', label: '柳川 川下り' },
       { type: 'shrine', label: '太宰府天滿宮' },
@@ -167,7 +167,7 @@ export const days: Day[] = [
     },
     shops: [
       {
-        title: '◆ 太宰府表參道 必嚐',
+        title: '太宰府表參道 必嚐',
         shops: [
           { name: '天山 本店', tag: '和菓子', tagColor: 'amber', desc: '名物「草莓最中・大福」一年四季皆有，最中外殼酥脆、紅豆餡與整顆草莓在嘴中爆漿，¥400/個。', mapQuery: '天山 太宰府 本店' },
           { name: '咖啡・梅枝餅 松屋', tag: '茶屋', tagColor: 'amber', desc: '1865 年創業，傳統梅枝餅（紅豆餡+糯米餅，鐵板現烤）¥150/個，亦推薦松屋抹茶套餐。', mapQuery: '梅ヶ枝餅 松屋 太宰府' },
@@ -177,7 +177,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '► 今日交通（西鐵電車）',
+        title: '今日交通（西鐵電車）',
         variant: 'purple',
         steps: [
           { text: '9:00 福岡（天神）→ 西鐵柳川（特急 47 分 ¥870）' },
@@ -200,7 +200,7 @@ export const days: Day[] = [
     title: '濱海咖啡 · teamLab · 福岡塔',
     subtitle: '藝術與海景的對話',
     summary: '早晨從博多港邊的網美咖啡開始，白天潛入 teamLab 的數位森林，午後在西新商店街與在地人擦身而過，傍晚於博多運河城購物，最後到福岡塔頂欣賞夕陽至夜景轉換。',
-    iconRow: '☕ ★ ★ ☀ ▲',
+    iconRow: '',
     hero: [
       { type: 'canalcity', label: '博多運河城 Canal City' },
       { type: 'tower', label: '福岡塔 · Fukuoka Tower' },
@@ -222,7 +222,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '★ 今日必買票券：福岡市地下鐵一日券',
+        title: '今日必買票券：福岡市地下鐵一日券',
         variant: 'amber',
         steps: [
           { text: '票價：成人 ¥640 / 兒童 ¥320，當日不限次數搭乘地下鐵空港線、箱崎線、七隈線全線。' },
@@ -233,7 +233,7 @@ export const days: Day[] = [
         ],
       },
       {
-        title: '◆ 上午動線（FUK COFFEE → teamLab）',
+        title: '上午動線（FUK COFFEE → teamLab）',
         variant: 'blue',
         steps: [
           { text: '唐人町 → 西新（地鐵空港線 1 站 ¥210，地鐵一日券免費）→ FUK COFFEE® Seaside 步行/巴士 5 分' },
@@ -241,7 +241,7 @@ export const days: Day[] = [
         ],
       },
       {
-        title: '► 下午採買 三選一動線（任選其一）',
+        title: '下午採買 三選一動線（任選其一）',
         variant: 'purple',
         steps: [
           { text: 'A · 西新商店街：teamLab（PayPay Dome）→ 西新 西鐵巴士直達 #1、#15 約 10 分；採買後 → 福岡塔 步行 20 分 / 巴士 #306 5 分' },
@@ -251,7 +251,7 @@ export const days: Day[] = [
         ],
       },
       {
-        title: '◆ 收尾動線（福岡塔 → 唐人町）',
+        title: '收尾動線（福岡塔 → 唐人町）',
         variant: 'blue',
         steps: [
           { text: '福岡塔 → 唐人町：西鐵巴士「福岡タワー南口」#306 直達唐人町約 8 分' },
@@ -271,7 +271,7 @@ export const days: Day[] = [
     title: '由布院之森 · 湯之坪街道',
     subtitle: '搭乘觀光列車前進溫泉鄉',
     summary: '告別福岡市，搭乘綠色復古的「特急由布院之森」穿越九州山脈。到由布院後沿著湯之坪街道一路吃喝採買——抹茶冰、龍貓專賣店、吉伊卡哇、貓頭鷹之森，最後在金鱗湖看夕陽。',
-    iconRow: '► ☕ ◆ ◆ ♨',
+    iconRow: '',
     hero: [{ type: 'yufuin', label: '由布院 · 由布岳・湯之坪街道' }],
     timeline: [
       { time: '08:30 ─ 09:00', place: '唐人町飯店退房 → 博多', desc: '從唐人町飯店退房後，地鐵空港線唐人町 → 博多 5 站約 13 分鐘 ¥260。建議 8:30 前完成早餐與行李打包。', mapQuery: '唐人町駅 福岡' },
@@ -285,7 +285,7 @@ export const days: Day[] = [
     ],
     shops: [
       {
-        title: '★ 湯之坪街道 商店巡禮（順遊路線）',
+        title: '湯之坪街道 商店巡禮（順遊路線）',
         shops: [
           { name: 'telato 抹茶ジェラート専門店', tag: '抹茶', tagColor: 'green', desc: '由布院最具人氣的抹茶冰淇淋專門店，使用京都宇治丸久小山園抹茶，分 5 階段濃度可選，最濃「No.5」茶香撲鼻不苦澀，¥620 起。', mapQuery: 'telato 抹茶 由布院' },
           { name: '龍貓專賣店（どんぐりの森 由布院店）', tag: '吉卜力', tagColor: 'red', desc: '九州少見的吉卜力官方專賣店，以《龍貓》為主題的木造建築，外牆藤蔓上能看到龍貓玩偶。內部分龍貓、神隱少女、魔女宅急便等商品區，是全家拍照熱點。', mapQuery: 'どんぐりの森 由布院店' },
@@ -301,7 +301,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '★ 今日電車：由布院之森 3 號（博多 10:11 → 由布院 12:34）',
+        title: '今日電車：由布院之森 3 號（博多 10:11 → 由布院 12:34）',
         variant: 'amber',
         steps: [
           { text: '行程預設搭乘「特急 由布院之森 3 號」，博多站 10:11 出發、由布院站 12:34 抵達。' },
@@ -323,7 +323,7 @@ export const days: Day[] = [
     title: '九州野生動物園・別府塔夜景',
     subtitle: '自駕日 · Yufuin → Beppu',
     summary: '早上於由布院取車展開自駕之旅。先到九州自然動物園搭叢林巴士餵獅子、長頸鹿，下午抵達別府市區購物採買，晚上登別府塔欣賞夜景，最後在地小酒館享用海鮮料理。',
-    iconRow: '◆ ◆ ◆ ★ ▲ ★',
+    iconRow: '',
     hero: [
       { type: 'safari', label: '九州自然動物園' },
       { type: 'tower', label: '別府塔' },
@@ -347,7 +347,7 @@ export const days: Day[] = [
     ],
     infos: [
       {
-        title: '◆ 自駕注意事項（重要）',
+        title: '自駕注意事項（重要）',
         paragraphs: [
           '1. 駕照：台灣駕照需附「日文翻譯本」（監理所辦理 ¥100），三項缺一不可：駕照正本+翻譯本+護照。',
           '2. 靠左行駛：日本靠左行駛，方向盤在右；圓環請從外環順時針方向進入。',
@@ -369,7 +369,7 @@ export const days: Day[] = [
     title: '別府地獄巡禮 · SONIC 回博多',
     subtitle: '七大地獄與蒸氣料理',
     summary: '用一上午自駕巡禮別府引以為傲的「七大地獄」——鐵輪溫泉區與龜川區的火山溫泉景觀。中午在地獄蒸工房用蒸氣料理午餐，下午還車後搭乘特急 SONIC 返回博多。',
-    iconRow: '♨ ◆ ▲ ◆ ►',
+    iconRow: '',
     hero: [{ type: 'hells', label: '別府地獄巡禮 · Hell Tour' }],
     timeline: [
       { time: '11:20 ─ 11:46', place: '血池地獄 + 足湯', desc: '日本最古老的天然地獄之一，含氧化鐵與礦物使溫泉呈現赤紅色，氤氳間如人間血池。免費足湯設於停車場旁，可一邊泡腳一邊欣賞紅池。地獄門票 ¥450（含七地獄通票 ¥2,200）。', mapQuery: '血の池地獄 別府' },
@@ -384,7 +384,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '★ 今日電車：SONIC 36 號（別府 16:52 → 博多 19:13）',
+        title: '今日電車：SONIC 36 號（別府 16:52 → 博多 19:13）',
         variant: 'blue',
         steps: [
           { text: '行程預設搭乘「特急 SONIC 36 號」，別府站 16:52 出發、博多站 19:13 抵達。' },
@@ -395,7 +395,7 @@ export const days: Day[] = [
     ],
     infos: [
       {
-        title: '★ 七地獄通票（地獄めぐり共通観覽券）',
+        title: '七地獄通票（地獄めぐり共通観覽券）',
         paragraphs: [
           '¥2,200 含 7 個地獄（血池、龍卷、海、鬼石坊主、灶、白池、原山地獄）入場券，2 日內有效。各地獄分別買票合計約 ¥3,150，買通票省 ¥950。',
           '購買地點：任一地獄入口售票處皆可。',
@@ -414,7 +414,7 @@ export const days: Day[] = [
     title: '博多購物全攻略',
     subtitle: '從吉卜力到任天堂的一日大採買',
     summary: '用一整天踏遍博多所有大型商場——博多運河城的吉卜力共和國、迪士尼商店；KITTE 博多的寶可夢中心;任天堂福岡與 AMU PLAZA；晚餐在 KITTE 博多 9–10F 美食街解決。',
-    iconRow: '⚑ ◆ ◆ ★ ◆',
+    iconRow: '',
     hero: [{ type: 'shopping', label: '博多運河城 + AMU PLAZA + KITTE 博多' }],
     timeline: [
       { time: '09:04 ─ 12:11', place: '博多運河城 Canal City', desc: '早上 10 點開店，重點商店一次逛完。', mapQuery: 'キャナルシティ博多' },
@@ -435,7 +435,7 @@ export const days: Day[] = [
     ],
     shops: [
       {
-        title: '★ 博多運河城 重點商店',
+        title: '博多運河城 重點商店',
         shops: [
           { name: '吉卜力共和國 博多運河城店（どんぐり共和国）', tag: '吉卜力', tagColor: 'red', desc: '九州最大的吉卜力官方商店，1F North Building。神隱少女、龍貓、魔女宅急便、霍爾、紅豬、貓的報恩，限定貨「博多帆船龍貓」福岡限定。', mapQuery: 'どんぐり共和国 キャナルシティ博多' },
           { name: '迪士尼商店 博多運河城店', tag: '迪士尼', tagColor: 'red', desc: '九州最大迪士尼專賣店。米奇 90 週年商品、皮克斯、Marvel、星際大戰、Frozen，比東京迪士尼便宜 5%（無服務費）。', mapQuery: 'ディズニーストア キャナルシティ博多' },
@@ -445,7 +445,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '◆ 今日動線',
+        title: '今日動線',
         variant: 'blue',
         steps: [
           { text: '飯店（櫛田神社前站）→ 中洲川端：地下鐵七隈線徒歩 5 分' },
@@ -467,7 +467,7 @@ export const days: Day[] = [
     title: '櫛田神社 · 川端商店街 · 賦歸',
     subtitle: '最後的福岡時光',
     summary: '早上參拜博多總鎮守櫛田神社，沿著 400 年歷史的上川端商店街掃尾採買甜點與職人服裝，下午搭乘地鐵直達福岡空港搭機回台。',
-    iconRow: '❖ ◆ ◆ ⚙ ✈',
+    iconRow: '',
     hero: [
       { type: 'shrine-hakata', label: '櫛田神社 · 博多總鎮守' },
       { type: 'airport', label: '福岡機場 · 出境返台' },
@@ -480,7 +480,7 @@ export const days: Day[] = [
     ],
     shops: [
       {
-        title: '★ 上川端商店街 商店清單',
+        title: '上川端商店街 商店清單',
         shops: [
           { name: 'おかしばっかし 上川端店', tag: '糖果', tagColor: 'amber', desc: '昭和懷舊風駄菓子（一口糖果）專賣店，店內擺滿了 100 種以上 ¥10–¥50 的糖果、餅乾、玩具糖。買來當伴手禮分送同事最划算。', mapQuery: 'おかしばっかし 上川端店' },
           { name: 'PAN DEL SOL（パンデルソル）', tag: '麵包', tagColor: 'red', desc: '商店街老牌麵包店，明太子法國、紅豆奶油、起司可頌。每日下午 2 點才出爐的「博多 White Bread」是熟客必訂。', mapQuery: 'パンデルソル 上川端' },
@@ -490,7 +490,7 @@ export const days: Day[] = [
     ],
     transit: [
       {
-        title: '◆ 飯店 → 機場 路線',
+        title: '飯店 → 機場 路線',
         variant: 'blue',
         steps: [
           { text: '櫛田神社前站 → 福岡空港站（地下鐵七隈線轉空港線）' },
