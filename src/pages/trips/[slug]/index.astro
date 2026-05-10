@@ -22,7 +22,10 @@ const coverImageUrl = trip.meta.coverImage
 
 <Layout title={trip.meta.title} activeNav="home" trip={trip}>
 
-  <section class={`cover cover--trip ${coverImageUrl ? 'cover--has-photo' : ''}`}>
+  <section
+    slot="hero"
+    class={`cover cover--trip ${coverImageUrl ? 'cover--has-photo' : ''}`}
+  >
     {coverImageUrl && (
       <img
         class="cover__photo"

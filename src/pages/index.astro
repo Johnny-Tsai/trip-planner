@@ -10,11 +10,13 @@ const trips = getAllTrips();
 
 <Layout title="我的旅程 · Trip Planner">
 
-  <section class="cover cover--platform">
-    <span class="cover__badge">MY TRIPS</span>
-    <h1 class="cover__title">我的旅程</h1>
-    <div class="cover__subtitle">私人旅遊行程規劃</div>
-    <div class="cover__tagline">逐趟記錄、按日翻閱、行前自我檢查</div>
+  <section slot="hero" class="cover cover--platform">
+    <div class="cover__inner">
+      <span class="cover__badge">MY TRIPS</span>
+      <h1 class="cover__title">我的旅程</h1>
+      <div class="cover__subtitle">私人旅遊行程規劃</div>
+      <div class="cover__tagline">逐趟記錄、按日翻閱、行前自我檢查</div>
+    </div>
   </section>
 
   <section class="section">

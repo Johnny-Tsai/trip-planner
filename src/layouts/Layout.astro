@@ -114,6 +114,7 @@ const currentYear = new Date().getFullYear();
       <div class="nav-backdrop" aria-hidden="true"></div>
 
       <div class="layout__main">
+        <slot name="hero" />
         {trip && (
           <nav
             class="trip-tabs"
