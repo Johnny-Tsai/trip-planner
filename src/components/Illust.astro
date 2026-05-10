@@ -5,7 +5,7 @@ interface Props {
 }
 const { hero } = Astro.props;
 
-// 各場景的中央圖示
+// 中央 fallback 圖示（圖片載入失敗時顯示）
 const ICONS: Record<HeroIllust['type'], string> = {
   park: '❀',
   castle: '❖',
@@ -20,12 +20,63 @@ const ICONS: Record<HeroIllust['type'], string> = {
   airport: '✈',
   shopping: '★',
 };
+
+// 真實照片（來源：Wikimedia Commons，CC-BY-SA 授權）
+const wm = (filename: string, width = 1200) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=${width}`;
+
+const IMAGES: Record<HeroIllust['type'], string> = {
+  airport: wm('Fukuoka Airport International Terminal by night; April 2016.jpg'),
+  park: wm('Sunset in Ohori Park.JPG'),
+  castle: wm('View near east moat of Fukuoka Castle.jpg'),
+  river: wm('Yanagawa Cruise.jpg'),
+  shrine: wm('Dazaifu Tenmangu08n3200.jpg'),
+  'shrine-hakata': wm('Kushida Jinja Hakata Okunchi.JPG'),
+  tower: wm('Fukuoka Tower 20180413.jpg'),
+  yufuin: wm('View of Mount Yufudake and Yufuin Onsen Street in front of Yufuin Station.JPG'),
+  safari: wm('Africanlionsafari Bus.JPG'),
+  hells: wm('Umi Jigoku (Sea Hell) in Beppu.jpg'),
+  canalcity: wm('Canal city hakata fukuoka3.jpg'),
+  shopping: wm('Hakata Station Business Center Building.JPG'),
+};
+
+const ATTR: Record<HeroIllust['type'], string> = {
+  airport: '福岡國際機場',
+  park: '大濠公園夕陽',
+  castle: '福岡城跡',
+  river: '柳川扁舟川下り',
+  shrine: '太宰府天滿宮',
+  'shrine-hakata': '櫛田神社',
+  tower: '福岡塔',
+  yufuin: '由布院・由布岳',
+  safari: '九州自然動物園',
+  hells: '別府海地獄',
+  canalcity: '博多運河城',
+  shopping: '博多站',
+};
 ---
 <div class={`illust-row ${hero.length === 2 ? 'cols-2' : ''}`}>
   {hero.map((h) => (
     <div class={`illust illust--${h.type}`}>
+      <img
+        class="illust__photo"
+        src={IMAGES[h.type]}
+        alt={ATTR[h.type]}
+        loading="lazy"
+        decoding="async"
+        referrerpolicy="no-referrer"
+      />
       <span class="illust__icon">{ICONS[h.type]}</span>
       <span class="illust__label">{h.label}</span>
     </div>
   ))}
 </div>
+
+<script>
+  // 圖片載入失敗時隱藏 img，露出 CSS 漸層 fallback
+  document.querySelectorAll<HTMLImageElement>('.illust__photo').forEach((img) => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+    });
+  });
+</script>
