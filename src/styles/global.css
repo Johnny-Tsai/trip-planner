@@ -1071,6 +1071,29 @@ main {
 }
 .transit-card .arrow { color: var(--c-text-muted); }
 
+.transit-step__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+  padding: 2px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-accent);
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-line);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.transit-step__link:hover {
+  background: var(--c-accent);
+  color: #fff;
+  border-color: var(--c-accent);
+  text-decoration: none;
+}
+.transit-step__link svg { display: block; }
+
 /* ============================================================
    Tip
    ============================================================ */

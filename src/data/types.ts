@@ -31,6 +31,7 @@ export interface ShopBlock {
 export interface TransitStep {
   text: string;
   meta?: string;
+  link?: { text: string; href: string };
 }
 
 export interface TransitCard {

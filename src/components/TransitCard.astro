@@ -8,6 +8,15 @@ const { card } = Astro.props;
   {card.steps.map((s) => (
     <div class="transit-step">
       {s.text && <span>{s.text}</span>}
+      {s.link && (
+        <a class="transit-step__link" href={s.link.href} target="_blank" rel="noopener noreferrer">
+          {s.link.text}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17 17 7"/>
+            <path d="M7 7h10v10"/>
+          </svg>
+        </a>
+      )}
       {s.meta && <span class="transit-step__meta">{s.meta}</span>}
     </div>
   ))}
