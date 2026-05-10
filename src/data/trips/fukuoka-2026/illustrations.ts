@@ -8,27 +8,27 @@ const local = (filename: string) => `${b}illustrations/fukuoka-2026/${filename}`
 
 export const illustrations: Record<string, IllustEntry> = {
   airport: {
-    img: local('airport.png'),
+    img: local('airport.jpg'),
     label: '福岡國際機場',
     icon: '✈',
   },
   park: {
-    img: local('park.png'),
-    label: '大濠公園夕陽',
+    img: local('park.jpg'),
+    label: '大濠公園',
     icon: '❀',
   },
   castle: {
-    img: local('castle.png'),
-    label: '福岡城跡',
+    img: local('castle.jpg'),
+    label: '福岡城跡 · 舞鶴公園',
     icon: '❖',
   },
   river: {
-    img: local('river.png'),
+    img: local('river.jpg'),
     label: '柳川扁舟川下り',
     icon: '◆',
   },
   shrine: {
-    img: local('shrine.png'),
+    img: local('shrine.webp'),
     label: '太宰府天滿宮',
     icon: '❖',
   },
