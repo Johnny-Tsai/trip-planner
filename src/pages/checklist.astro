@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CHECKLIST } from '../data/trip';
+---
+
+<Layout title="出發前 Checklist · 福岡九天" activeNav="checklist">
+  <section class="section" style="margin-top: 16px;">
+    <h2 class="section-title">出發前 · 隨身備品 Checklist<small>PRE-TRIP CHECKLIST</small></h2>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3 class="info-card__title">◆ 證件文件</h3>
+        <ul class="check-list" data-storage-key="docs">
+          {CHECKLIST.documents.map((item) => (
+            <li><label><input type="checkbox" /><span>{item}</span></label></li>
+          ))}
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3 class="info-card__title">◆ 行李推薦</h3>
+        <ul class="check-list" data-storage-key="packing">
+          {CHECKLIST.packing.map((item) => (
+            <li><label><input type="checkbox" /><span>{item}</span></label></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title" style="font-size: 18px;">★ 預算估算（人均，未含購物）</h2>
+    <div class="info-card">
+      {CHECKLIST.budget.map((b) => (
+        <p><strong style="color:var(--c-accent);">{b.label}</strong>　{b.body}</p>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title" style="font-size: 18px;">☎ 緊急聯絡</h2>
+    <div class="info-card">
+      {CHECKLIST.emergency.map((e) => (
+        <p><strong style="color:var(--c-accent);">{e.label}</strong>　{e.body}</p>
+      ))}
+    </div>
+  </section>
+
+  <div class="tip" style="margin-top: 32px;">
+    <strong>結語：</strong>九州的春末初夏，天氣舒適、櫻花已謝但梅雨初開，正是品嚐由布院抹茶、別府地獄、太宰府梅枝餅與博多拉麵的最佳時節。願這份指南能陪伴你踏遍福岡九天的每一個美麗瞬間。一路順風！
+  </div>
+</Layout>
+
+<script>
+  // localStorage 持久化勾選狀態（每個列表獨立儲存）
+  document.querySelectorAll<HTMLUListElement>('.check-list[data-storage-key]').forEach((list) => {
+    const key = list.dataset.storageKey;
+    if (!key) return;
+    const storeKey = `fukuoka-checklist-${key}`;
+    const saved: number[] = JSON.parse(localStorage.getItem(storeKey) || '[]');
+    const boxes = list.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+    boxes.forEach((box, i) => {
+      box.checked = saved.includes(i);
+      box.addEventListener('change', () => {
+        const checked: number[] = [];
+        boxes.forEach((b, j) => b.checked && checked.push(j));
+        localStorage.setItem(storeKey, JSON.stringify(checked));
+      });
+    });
+  });
+</script>

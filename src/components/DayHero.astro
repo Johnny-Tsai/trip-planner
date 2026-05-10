@@ -1,0 +1,12 @@
+---
+import type { Day } from '../data/types';
+interface Props { day: Day; }
+const { day } = Astro.props;
+---
+<section class="day-hero">
+  <span class="day-hero__tag">{day.tag}</span>
+  <h1 class="day-hero__title">{day.title}</h1>
+  <div class="day-hero__date">{day.date}（{day.weekday}）　{day.subtitle}</div>
+  <p class="day-hero__summary">{day.summary}</p>
+  <div class="day-hero__icons">{day.iconRow}</div>
+</section>

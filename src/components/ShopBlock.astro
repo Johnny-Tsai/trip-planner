@@ -1,0 +1,17 @@
+---
+import type { ShopBlock } from '../data/types';
+interface Props { block: ShopBlock; }
+const { block } = Astro.props;
+---
+<section class="shops-block">
+  <h3 class="shops-block__title">{block.title}</h3>
+  {block.shops.map((s) => (
+    <div class="shop-item">
+      <span class="shop-item__name">{s.name}</span>
+      {s.tag && (
+        <span class={`shop-tag ${s.tagColor ? `shop-tag--${s.tagColor}` : ''}`}>{s.tag}</span>
+      )}
+      <span>{s.desc}</span>
+    </div>
+  ))}
+</section>

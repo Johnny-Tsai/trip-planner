@@ -1,0 +1,20 @@
+---
+import type { TimelineItem } from '../data/types';
+interface Props { items: TimelineItem[]; }
+const { items } = Astro.props;
+---
+<div class="timeline">
+  {items.map((item) => (
+    <div class="timeline-item">
+      <div class="timeline-item__time">{item.time}</div>
+      <div class="timeline-item__place">{item.place}</div>
+      <div class="timeline-item__desc">{item.desc}</div>
+      {item.alt?.map((a) => (
+        <div class="timeline-alt">
+          <strong>{a.title}</strong>
+          <span>{a.body}</span>
+        </div>
+      ))}
+    </div>
+  ))}
+</div>

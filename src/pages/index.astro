@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InfoCard from '../components/InfoCard.astro';
+import { TRIP_META, HOTELS, TRIP_INFO, OVERVIEW } from '../data/trip';
+
+const base = import.meta.env.BASE_URL;
+const b = base.endsWith('/') ? base.slice(0, -1) : base;
+---
+
+<Layout title={TRIP_META.title} activeNav="home">
+
+  <section class="cover">
+    <span class="cover__badge">FUKUOKA · KYUSHU</span>
+    <h1 class="cover__title">福岡九天</h1>
+    <div class="cover__subtitle">{TRIP_META.subtitle}</div>
+    <div class="cover__dates">{TRIP_META.dateRange}</div>
+    <div class="cover__icons">❖ ♨ ◆ ► ◆</div>
+    <div class="cover__tagline">天神地下街 · 由布院湯之坪 · 別府地獄 · 太宰府表參道</div>
+  </section>
+
+  <section class="section" id="overview">
+    <h2 class="section-title">行程總覽<small>OVERVIEW · DATES · LODGING</small></h2>
+    <div class="two-col">
+      {TRIP_INFO.map((card) => <InfoCard card={card} />)}
+    </div>
+  </section>
+
+  <section class="section" id="hotels">
+    <h2 class="section-title">住宿安排<small>ACCOMMODATIONS</small></h2>
+    <div class="info-card">
+      <ul class="hotel-list">
+        {HOTELS.map((h) => (
+          <li>
+            <span class="nights">{h.range}（{h.nights}）</span>
+            <span class="name">{h.name}</span>
+            <span class="area">{h.area}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="daily">
+    <h2 class="section-title">每日一覽<small>DAILY HIGHLIGHTS</small></h2>
+    <div class="day-summary-grid">
+      {OVERVIEW.map((d) => (
+        <a class="day-summary" href={`${b}/days/${d.num}`}>
+          <div class="day-summary__num">
+            DAY
+            <strong>{d.num}</strong>
+            <em>{d.date}</em>
+          </div>
+          <div class="day-summary__body">
+            <strong>{d.title}</strong>
+            {d.body}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</Layout>

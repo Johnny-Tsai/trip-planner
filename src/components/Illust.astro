@@ -1,0 +1,31 @@
+---
+import type { HeroIllust } from '../data/types';
+interface Props {
+  hero: HeroIllust[];
+}
+const { hero } = Astro.props;
+
+// 各場景的中央圖示
+const ICONS: Record<HeroIllust['type'], string> = {
+  park: '❀',
+  castle: '❖',
+  tower: '▲',
+  river: '◆',
+  shrine: '❖',
+  'shrine-hakata': '✦',
+  yufuin: '▲',
+  safari: '◆',
+  hells: '♨',
+  canalcity: '★',
+  airport: '✈',
+  shopping: '★',
+};
+---
+<div class={`illust-row ${hero.length === 2 ? 'cols-2' : ''}`}>
+  {hero.map((h) => (
+    <div class={`illust illust--${h.type}`}>
+      <span class="illust__icon">{ICONS[h.type]}</span>
+      <span class="illust__label">{h.label}</span>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,14 @@
+---
+import type { TransitCard } from '../data/types';
+interface Props { card: TransitCard; }
+const { card } = Astro.props;
+---
+<div class={`transit-card ${card.variant ? `transit-card--${card.variant}` : ''}`}>
+  <div class="transit-card__title">{card.title}</div>
+  {card.steps.map((s) => (
+    <div class="transit-step">
+      {s.text && <span>{s.text}</span>}
+      {s.meta && <span class="transit-step__meta">{s.meta}</span>}
+    </div>
+  ))}
+</div>

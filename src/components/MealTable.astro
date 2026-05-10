@@ -1,0 +1,26 @@
+---
+import type { MealTable } from '../data/types';
+interface Props { table: MealTable; }
+const { table } = Astro.props;
+---
+<table class="meal-table">
+  <caption style="text-align:left; font-size:14px; color:var(--c-text-muted); padding:8px 0;">
+    {table.caption}
+  </caption>
+  <thead>
+    <tr>
+      <th>Plan</th>
+      <th>店名</th>
+      <th>特色</th>
+    </tr>
+  </thead>
+  <tbody>
+    {table.rows.map((r) => (
+      <tr>
+        <td class="plan">{r.plan}</td>
+        <td>{r.name}</td>
+        <td>{r.feature}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

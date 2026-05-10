@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?: string;
+}
+
+const { title, description = '福岡九天八夜旅遊計畫 — 福岡 · 由布院 · 別府', activeNav } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// 確保 base 結尾無斜線（避免雙斜線）
+const b = base.endsWith('/') ? base.slice(0, -1) : base;
+
+const nav = [
+  { id: 'home', label: '總覽', href: `${b}/` },
+  { id: 'transit', label: '交通指南', href: `${b}/transit` },
+  { id: 'day-1', label: 'Day 1', href: `${b}/days/1` },
+  { id: 'day-2', label: 'Day 2', href: `${b}/days/2` },
+  { id: 'day-3', label: 'Day 3', href: `${b}/days/3` },
+  { id: 'day-4', label: 'Day 4', href: `${b}/days/4` },
+  { id: 'day-5', label: 'Day 5', href: `${b}/days/5` },
+  { id: 'day-6', label: 'Day 6', href: `${b}/days/6` },
+  { id: 'day-7', label: 'Day 7', href: `${b}/days/7` },
+  { id: 'day-8', label: 'Day 8', href: `${b}/days/8` },
+  { id: 'day-9', label: 'Day 9', href: `${b}/days/9` },
+  { id: 'checklist', label: 'Checklist', href: `${b}/checklist` },
+];
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#c44834" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__brand" href={`${b}/`}>
+          福岡九天 <small>FUKUOKA · 2026</small>
+        </a>
+        <nav class="site-header__nav" aria-label="主要導覽">
+          {nav.map((item) => (
+            <a href={item.href} class={activeNav === item.id ? 'is-active' : ''}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 福岡旅遊計畫 · Built with Astro · Hosted on GitHub Pages</p>
+      <p>內容僅供參考，店家資訊與票價請以實際為準</p>
+    </footer>
+  </body>
+</html>

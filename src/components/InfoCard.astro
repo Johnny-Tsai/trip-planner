@@ -1,0 +1,9 @@
+---
+import type { InfoCard } from '../data/types';
+interface Props { card: InfoCard; }
+const { card } = Astro.props;
+---
+<div class="info-card">
+  <h3 class="info-card__title">{card.title}</h3>
+  {card.paragraphs.map((p) => <p>{p}</p>)}
+</div>
