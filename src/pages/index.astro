@@ -4,6 +4,7 @@ import { getAllTrips } from '../data/trips';
 
 const base = import.meta.env.BASE_URL;
 const b = base.endsWith('/') ? base.slice(0, -1) : base;
+const bSlash = base.endsWith('/') ? base : `${base}/`;
 const trips = getAllTrips();
 ---
 
@@ -19,25 +20,39 @@ const trips = getAllTrips();
   <section class="section">
     <h2 class="section-title">所有行程<small>ALL TRIPS · {trips.length}</small></h2>
     <div class="trip-card-grid">
-      {trips.map((trip) => (
-        <a
-          class="trip-card"
-          href={`${b}/trips/${trip.slug}`}
-          style={`--trip-color: ${trip.meta.themeColor ?? '#c44834'}`}
-        >
-          <div class="trip-card__cover" data-icons={trip.meta.coverIcons ?? ''}>
-            {trip.meta.badge && <span class="trip-card__badge">{trip.meta.badge}</span>}
-          </div>
-          <div class="trip-card__body">
-            <h3 class="trip-card__title">{trip.meta.title}</h3>
-            <p class="trip-card__sub">{trip.meta.subtitle} · {trip.meta.dateRange}</p>
-            {trip.meta.tagline && <p class="trip-card__tagline">{trip.meta.tagline}</p>}
-            <div class="trip-card__meta">
-              <span class="trip-card__days">{trip.meta.totalDays} 天 {trip.meta.totalNights} 夜</span>
+      {trips.map((trip) => {
+        const photo = trip.meta.coverImage
+          ? `${bSlash}illustrations/${trip.slug}/${trip.meta.coverImage}`
+          : null;
+        return (
+          <a
+            class="trip-card"
+            href={`${b}/trips/${trip.slug}`}
+            style={`--trip-color: ${trip.meta.themeColor ?? '#c44834'}`}
+          >
+            <div class={`trip-card__cover ${photo ? 'trip-card__cover--has-photo' : ''}`}>
+              {photo && (
+                <img
+                  class="trip-card__photo"
+                  src={photo}
+                  alt={`${trip.meta.title} 封面`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+              {trip.meta.badge && <span class="trip-card__badge">{trip.meta.badge}</span>}
             </div>
-          </div>
-        </a>
-      ))}
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">{trip.meta.title}</h3>
+              <p class="trip-card__sub">{trip.meta.subtitle} · {trip.meta.dateRange}</p>
+              {trip.meta.tagline && <p class="trip-card__tagline">{trip.meta.tagline}</p>}
+              <div class="trip-card__meta">
+                <span class="trip-card__days">{trip.meta.totalDays} 天 {trip.meta.totalNights} 夜</span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </section>
 
