@@ -971,35 +971,49 @@ main {
 .shop-tag--purple { background: var(--c-purple); }
 
 /* ============================================================
-   Transit Card
+   Transit Card — 柔光雜誌風：米色卡片 + 主題色左邊條 + 主題色標題
    ============================================================ */
 .transit-card {
-  background: linear-gradient(135deg, var(--c-blue) 0%, #1a4d7d 100%);
-  color: white;
-  padding: 20px 24px;
+  background: var(--c-bg-soft);
+  color: var(--c-text);
+  border: 1px solid var(--c-line);
+  border-left: 4px solid var(--c-blue);
+  padding: 16px 22px;
   border-radius: var(--radius-md);
-  margin: 20px 0;
+  margin: 16px 0;
 }
-.transit-card--green  { background: linear-gradient(135deg, var(--c-green) 0%, #2d5a3a 100%); }
-.transit-card--purple { background: linear-gradient(135deg, var(--c-purple) 0%, #3d2a5a 100%); }
-.transit-card--amber  { background: linear-gradient(135deg, var(--c-amber) 0%, #7a4f10 100%); }
+.transit-card--green  { border-left-color: var(--c-green); }
+.transit-card--purple { border-left-color: var(--c-purple); }
+.transit-card--amber  { border-left-color: var(--c-amber); }
+
 .transit-card__title {
   font-size: 15px;
-  letter-spacing: 1px;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  letter-spacing: 0.5px;
+  border-bottom: 1px dashed var(--c-line);
   padding-bottom: 10px;
-  margin-bottom: 14px;
-  font-weight: 600;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--c-blue);
 }
-.transit-step { font-size: 14px; margin: 4px 0; line-height: 1.65; }
+.transit-card--green  .transit-card__title { color: var(--c-green); }
+.transit-card--purple .transit-card__title { color: var(--c-purple); }
+.transit-card--amber  .transit-card__title { color: var(--c-amber); }
+
+.transit-step {
+  font-size: 14px;
+  margin: 6px 0;
+  line-height: 1.65;
+  color: var(--c-text);
+}
 .transit-step__meta {
-  color: #ffd9a8;
-  font-size: 12px;
+  color: var(--c-text-muted);
+  font-size: 12.5px;
   display: block;
   margin-left: 12px;
   margin-top: 4px;
+  font-style: italic;
 }
-.transit-card .arrow { color: #ffd9a8; }
+.transit-card .arrow { color: var(--c-text-muted); }
 
 /* ============================================================
    Tip
