@@ -1,0 +1,25 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import TransitCard from '../../../components/TransitCard.astro';
+import InfoCard from '../../../components/InfoCard.astro';
+import Tip from '../../../components/Tip.astro';
+import { getAllTrips } from '../../../data/trips';
+
+export async function getStaticPaths() {
+  return getAllTrips().map((trip) => ({
+    params: { slug: trip.slug },
+    props: { trip },
+  }));
+}
+
+const { trip } = Astro.props;
+---
+
+<Layout title={`大眾交通工具搭乘指南 · ${trip.meta.title}`} activeNav="transit" trip={trip}>
+  <section class="section" style="margin-top: 16px;">
+    <h2 class="section-title">大眾交通工具搭乘指南<small>PUBLIC TRANSIT MASTER GUIDE</small></h2>
+    <InfoCard card={trip.transit.tickets} />
+    {trip.transit.master.map((card) => <TransitCard card={card} />)}
+    <Tip text="悠遊小撇步：日本各大都市車站閘門幾乎都支援 IC 卡感應，省去買單程票時間；特急列車（如由布院之森、SONIC、Haruka）必須額外購買「特急券」+ 指定席券，僅 IC 卡無法搭乘自由席以外的車廂。" />
+  </section>
+</Layout>

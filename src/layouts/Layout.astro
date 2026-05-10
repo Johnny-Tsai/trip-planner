@@ -1,32 +1,46 @@
 ---
 import '../styles/global.css';
+import type { Trip } from '../data/types';
 
 interface Props {
   title: string;
   description?: string;
   activeNav?: string;
+  trip?: Trip;
 }
 
-const { title, description = '福岡九天八夜旅遊計畫 — 福岡 · 由布院 · 別府', activeNav } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const PLATFORM_NAME = 'Trip Planner';
+const PLATFORM_DESC = '私人旅遊行程平台';
+const PLATFORM_THEME = '#c44834';
 
-// 確保 base 結尾無斜線（避免雙斜線）
+const { title, description, activeNav, trip } = Astro.props;
+const base = import.meta.env.BASE_URL;
 const b = base.endsWith('/') ? base.slice(0, -1) : base;
 
-const nav = [
-  { id: 'home', label: '總覽', href: `${b}/` },
-  { id: 'transit', label: '交通指南', href: `${b}/transit` },
-  { id: 'day-1', label: 'Day 1', href: `${b}/days/1` },
-  { id: 'day-2', label: 'Day 2', href: `${b}/days/2` },
-  { id: 'day-3', label: 'Day 3', href: `${b}/days/3` },
-  { id: 'day-4', label: 'Day 4', href: `${b}/days/4` },
-  { id: 'day-5', label: 'Day 5', href: `${b}/days/5` },
-  { id: 'day-6', label: 'Day 6', href: `${b}/days/6` },
-  { id: 'day-7', label: 'Day 7', href: `${b}/days/7` },
-  { id: 'day-8', label: 'Day 8', href: `${b}/days/8` },
-  { id: 'day-9', label: 'Day 9', href: `${b}/days/9` },
-  { id: 'checklist', label: 'Checklist', href: `${b}/checklist` },
-];
+const themeColor = trip?.meta.themeColor ?? PLATFORM_THEME;
+const metaDesc = description ?? trip?.meta.description ?? PLATFORM_DESC;
+
+const brandHref = trip ? `${b}/trips/${trip.slug}` : `${b}/`;
+const brandTitle = trip?.meta.title ?? PLATFORM_NAME;
+const brandSub = trip?.meta.subtitle ?? '';
+
+// 有 trip：顯示該趟內部導覽；沒 trip（trips 清單頁）：只顯示「回首頁」
+const nav = trip
+  ? [
+      { id: 'home', label: '總覽', href: `${b}/trips/${trip.slug}` },
+      { id: 'transit', label: '交通指南', href: `${b}/trips/${trip.slug}/transit` },
+      ...trip.days.map((d) => ({
+        id: `day-${d.num}`,
+        label: `Day ${d.num}`,
+        href: `${b}/trips/${trip.slug}/days/${d.num}`,
+      })),
+      { id: 'checklist', label: 'Checklist', href: `${b}/trips/${trip.slug}/checklist` },
+    ]
+  : [{ id: 'trips-list', label: '所有旅程', href: `${b}/` }];
+
+const footerLine = trip
+  ? `© ${trip.meta.dates.start.split('/')[0]} ${trip.meta.title} · Built with Astro · Hosted on GitHub Pages`
+  : `© ${new Date().getFullYear()} ${PLATFORM_NAME} · Built with Astro · Hosted on GitHub Pages`;
 ---
 
 <!doctype html>
@@ -34,8 +48,8 @@ const nav = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#c44834" />
+    <meta name="description" content={metaDesc} />
+    <meta name="theme-color" content={themeColor} />
     <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,12 +58,15 @@ const nav = [
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    {trip?.meta.themeColor && (
+      <style set:html={`:root { --c-accent: ${trip.meta.themeColor}; }`}></style>
+    )}
   </head>
   <body>
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="site-header__brand" href={`${b}/`}>
-          福岡九天 <small>FUKUOKA · 2026</small>
+        <a class="site-header__brand" href={brandHref}>
+          {brandTitle} {brandSub && <small>{brandSub}</small>}
         </a>
         <nav class="site-header__nav" aria-label="主要導覽">
           {nav.map((item) => (
@@ -66,7 +83,7 @@ const nav = [
     </main>
 
     <footer class="site-footer">
-      <p>© 2026 福岡旅遊計畫 · Built with Astro · Hosted on GitHub Pages</p>
+      <p>{footerLine}</p>
       <p>內容僅供參考，店家資訊與票價請以實際為準</p>
     </footer>
   </body>

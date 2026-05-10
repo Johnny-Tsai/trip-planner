@@ -1,0 +1,70 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import InfoCard from '../../../components/InfoCard.astro';
+import { getAllTrips } from '../../../data/trips';
+
+export async function getStaticPaths() {
+  return getAllTrips().map((trip) => ({
+    params: { slug: trip.slug },
+    props: { trip },
+  }));
+}
+
+const { trip } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const b = base.endsWith('/') ? base.slice(0, -1) : base;
+---
+
+<Layout title={trip.meta.title} activeNav="home" trip={trip}>
+
+  <section class="cover">
+    {trip.meta.badge && <span class="cover__badge">{trip.meta.badge}</span>}
+    <h1 class="cover__title">{trip.meta.title}</h1>
+    <div class="cover__subtitle">{trip.meta.subtitle}</div>
+    <div class="cover__dates">{trip.meta.dateRange}</div>
+    {trip.meta.coverIcons && <div class="cover__icons">{trip.meta.coverIcons}</div>}
+    {trip.meta.tagline && <div class="cover__tagline">{trip.meta.tagline}</div>}
+  </section>
+
+  <section class="section" id="overview">
+    <h2 class="section-title">行程總覽<small>OVERVIEW · DATES · LODGING</small></h2>
+    <div class="two-col">
+      {trip.info.map((card) => <InfoCard card={card} />)}
+    </div>
+  </section>
+
+  <section class="section" id="hotels">
+    <h2 class="section-title">住宿安排<small>ACCOMMODATIONS</small></h2>
+    <div class="info-card">
+      <ul class="hotel-list">
+        {trip.hotels.map((h) => (
+          <li>
+            <span class="nights">{h.range}（{h.nights}）</span>
+            <span class="name">{h.name}</span>
+            <span class="area">{h.area}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="daily">
+    <h2 class="section-title">每日一覽<small>DAILY HIGHLIGHTS</small></h2>
+    <div class="day-summary-grid">
+      {trip.overview.map((d) => (
+        <a class="day-summary" href={`${b}/trips/${trip.slug}/days/${d.num}`}>
+          <div class="day-summary__num">
+            DAY
+            <strong>{d.num}</strong>
+            <em>{d.date}</em>
+          </div>
+          <div class="day-summary__body">
+            <strong>{d.title}</strong>
+            {d.body}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</Layout>

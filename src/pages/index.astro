@@ -1,58 +1,37 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import InfoCard from '../components/InfoCard.astro';
-import { TRIP_META, HOTELS, TRIP_INFO, OVERVIEW } from '../data/trip';
+import { getAllTrips } from '../data/trips';
 
 const base = import.meta.env.BASE_URL;
 const b = base.endsWith('/') ? base.slice(0, -1) : base;
+const trips = getAllTrips();
 ---
 
-<Layout title={TRIP_META.title} activeNav="home">
+<Layout title="我的旅程 · Trip Planner" activeNav="trips-list">
 
   <section class="cover">
-    <span class="cover__badge">FUKUOKA · KYUSHU</span>
-    <h1 class="cover__title">福岡九天</h1>
-    <div class="cover__subtitle">{TRIP_META.subtitle}</div>
-    <div class="cover__dates">{TRIP_META.dateRange}</div>
-    <div class="cover__icons">❖ ♨ ◆ ► ◆</div>
-    <div class="cover__tagline">天神地下街 · 由布院湯之坪 · 別府地獄 · 太宰府表參道</div>
+    <span class="cover__badge">MY TRIPS</span>
+    <h1 class="cover__title">我的旅程</h1>
+    <div class="cover__subtitle">私人旅遊行程規劃</div>
+    <div class="cover__tagline">逐趟記錄、按日翻閱、行前自我檢查</div>
   </section>
 
-  <section class="section" id="overview">
-    <h2 class="section-title">行程總覽<small>OVERVIEW · DATES · LODGING</small></h2>
-    <div class="two-col">
-      {TRIP_INFO.map((card) => <InfoCard card={card} />)}
-    </div>
-  </section>
-
-  <section class="section" id="hotels">
-    <h2 class="section-title">住宿安排<small>ACCOMMODATIONS</small></h2>
-    <div class="info-card">
-      <ul class="hotel-list">
-        {HOTELS.map((h) => (
-          <li>
-            <span class="nights">{h.range}（{h.nights}）</span>
-            <span class="name">{h.name}</span>
-            <span class="area">{h.area}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" id="daily">
-    <h2 class="section-title">每日一覽<small>DAILY HIGHLIGHTS</small></h2>
+  <section class="section">
+    <h2 class="section-title">所有行程<small>ALL TRIPS · {trips.length}</small></h2>
     <div class="day-summary-grid">
-      {OVERVIEW.map((d) => (
-        <a class="day-summary" href={`${b}/days/${d.num}`}>
+      {trips.map((trip) => (
+        <a class="day-summary" href={`${b}/trips/${trip.slug}`}>
           <div class="day-summary__num">
-            DAY
-            <strong>{d.num}</strong>
-            <em>{d.date}</em>
+            {trip.meta.badge && <span style="font-size:11px; letter-spacing:0.08em; color:var(--c-text-soft);">{trip.meta.badge}</span>}
+            <strong style="font-size:32px;">{trip.meta.totalDays}</strong>
+            <em>天 {trip.meta.totalNights} 夜</em>
           </div>
           <div class="day-summary__body">
-            <strong>{d.title}</strong>
-            {d.body}
+            <strong>{trip.meta.title}</strong>
+            <span style="display:block; color:var(--c-text-soft); font-size:13px; margin-bottom:6px;">
+              {trip.meta.subtitle} · {trip.meta.dateRange}
+            </span>
+            {trip.meta.tagline ?? trip.meta.description}
           </div>
         </a>
       ))}

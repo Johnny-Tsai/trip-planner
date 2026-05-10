@@ -52,20 +52,9 @@ export interface InfoCard {
   paragraphs: string[];
 }
 
+// type 改為 string，由各 trip 的 illustrations 字典自行定義 key
 export interface HeroIllust {
-  type:
-    | 'park'
-    | 'castle'
-    | 'tower'
-    | 'river'
-    | 'shrine'
-    | 'shrine-hakata'
-    | 'yufuin'
-    | 'safari'
-    | 'hells'
-    | 'canalcity'
-    | 'airport'
-    | 'shopping';
+  type: string;
   label: string;
 }
 
@@ -99,4 +88,50 @@ export interface OverviewItem {
   date: string;
   title: string;
   body: string;
+}
+
+// === 多趟旅遊平台型別 ===
+
+export interface TripMeta {
+  title: string;
+  subtitle: string;
+  dateRange: string;
+  dates: { start: string; end: string };
+  totalDays: number;
+  totalNights: number;
+  themeColor?: string;       // 每趟可有自己主題色，覆寫 --c-accent
+  description?: string;      // <meta name="description"> 用
+  coverIcons?: string;       // 首頁卡片 / cover 區裝飾 icon row
+  tagline?: string;          // cover 區的 tagline 文案
+  badge?: string;            // cover 區左上角 badge（如 "FUKUOKA · KYUSHU"）
+}
+
+export interface IllustEntry {
+  img: string;
+  label: string;
+  icon: string;
+}
+
+export interface ChecklistBudgetItem {
+  label: string;
+  body: string;
+}
+
+export interface ChecklistData {
+  documents: string[];
+  packing: string[];
+  budget: ChecklistBudgetItem[];
+  emergency: ChecklistBudgetItem[];
+}
+
+export interface Trip {
+  slug: string;
+  meta: TripMeta;
+  hotels: Hotel[];
+  info: InfoCard[];                                 // 原 TRIP_INFO
+  overview: OverviewItem[];
+  transit: { master: TransitCard[]; tickets: InfoCard };
+  checklist: ChecklistData;
+  days: Day[];
+  illustrations: Record<string, IllustEntry>;
 }
