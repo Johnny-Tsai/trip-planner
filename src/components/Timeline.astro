@@ -1,6 +1,8 @@
 ---
 import type { TimelineItem } from '../data/types';
 import MapLink from './MapLink.astro';
+import ShopBlock from './ShopBlock.astro';
+import MealTable from './MealTable.astro';
 interface Props { items: TimelineItem[]; }
 const { items } = Astro.props;
 ---
@@ -22,6 +24,8 @@ const { items } = Astro.props;
           <span>{a.body}</span>
         </div>
       ))}
+      {item.table && <MealTable table={item.table} />}
+      {item.shops?.map((block) => <ShopBlock block={block} />)}
     </div>
   ))}
 </div>

@@ -3,10 +3,8 @@ import Layout from '../../../../layouts/Layout.astro';
 import DayHero from '../../../../components/DayHero.astro';
 import Illust from '../../../../components/Illust.astro';
 import Timeline from '../../../../components/Timeline.astro';
-import ShopBlock from '../../../../components/ShopBlock.astro';
 import TransitCard from '../../../../components/TransitCard.astro';
 import InfoCard from '../../../../components/InfoCard.astro';
-import MealTable from '../../../../components/MealTable.astro';
 import Tip from '../../../../components/Tip.astro';
 import { getAllTrips } from '../../../../data/trips';
 
@@ -35,10 +33,6 @@ const tripBase = `${b}/trips/${trip.slug}`;
   <h2 class="section-title" style="font-size: 18px; margin-top: 32px;">行程時間軸</h2>
   <Timeline items={day.timeline} />
 
-  {day.table && <MealTable table={day.table} />}
-
-  {day.shops?.map((block) => <ShopBlock block={block} />)}
-
   {day.transit?.map((card) => <TransitCard card={card} />)}
 
   {day.infos?.map((card) => <InfoCard card={card} />)}
@@ -54,7 +48,7 @@ const tripBase = `${b}/trips/${trip.slug}`;
     {next ? (
       <a href={`${tripBase}/days/${next}`} style="font-size:14px; color:var(--c-text-soft);">Day {next} →</a>
     ) : (
-      <a href={`${tripBase}/checklist`} style="font-size:14px; color:var(--c-text-soft);">前往 Checklist →</a>
+      <a href={tripBase} style="font-size:14px; color:var(--c-text-soft);">回總覽 →</a>
     )}
   </nav>
 </Layout>

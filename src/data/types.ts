@@ -13,6 +13,8 @@ export interface TimelineItem {
   desc: string;
   alt?: TimelineAlt[];
   mapQuery?: string;
+  shops?: ShopBlock[];
+  table?: MealTable;
 }
 
 export interface Shop {

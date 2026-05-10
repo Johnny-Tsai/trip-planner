@@ -1028,8 +1028,10 @@ main {
   border: 1px solid var(--c-line);
   border-radius: var(--radius-md);
   padding: 20px 24px;
-  margin: 24px 0;
+  margin: 16px 0 8px;
 }
+.timeline-item .shops-block,
+.timeline-item .meal-table { margin: 14px 0 4px; }
 .shops-block__title {
   font-size: 16px;
   color: var(--c-accent);
