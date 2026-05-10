@@ -590,7 +590,7 @@ main {
   border-bottom: 1px dotted var(--c-line);
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 4px 12px;
 }
 .hotel-list li:last-child { border: none; }
